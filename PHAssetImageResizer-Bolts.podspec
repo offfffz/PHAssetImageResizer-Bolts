@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author        = { "offz" => "offfffz@gmail.com" }
 
   s.platform      = :ios, "8.0"
-  s.source        = { :git => "https://github.com/offfffz/PHAssetImageResizer-Bolts.git", :tag => "0.1.0" }
+  s.source        = { :git => "https://github.com/offfffz/PHAssetImageResizer-Bolts.git", :tag => "v0.1.0" }
   s.source_files  = "ImageResizer.swift"
   s.framework     = "Photos"
 
