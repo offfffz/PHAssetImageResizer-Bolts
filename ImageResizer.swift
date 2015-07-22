@@ -24,7 +24,7 @@ public class ImageResizer {
         return queue
     }()
     
-    init(targetFolderPath: String, sizeToFit: CGSize, imageQuality: Float = 0.8, maxConcurrentCount: Int = 3) {
+    public init(targetFolderPath: String, sizeToFit: CGSize, imageQuality: Float = 0.8, maxConcurrentCount: Int = 3) {
         self.maxConcurrentCount = maxConcurrentCount
         self.targetFolderPath = targetFolderPath
         self.sizeToFit = sizeToFit
