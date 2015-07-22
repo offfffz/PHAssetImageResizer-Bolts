@@ -14,7 +14,6 @@ public class ImageResizer {
     let maxConcurrentCount: Int
     let targetFolderPath: String
     let sizeToFit: CGSize
-    let imageQuality: Float
     
     lazy var imageProcessingQueue: NSOperationQueue = {
         let queue = NSOperationQueue()
@@ -24,11 +23,10 @@ public class ImageResizer {
         return queue
     }()
     
-    public init(targetFolderPath: String, sizeToFit: CGSize, imageQuality: Float = 0.8, maxConcurrentCount: Int = 3) {
+    public init(targetFolderPath: String, sizeToFit: CGSize, maxConcurrentCount: Int = 3) {
         self.maxConcurrentCount = maxConcurrentCount
         self.targetFolderPath = targetFolderPath
         self.sizeToFit = sizeToFit
-        self.imageQuality = imageQuality
     }
     
     public func resizeAndCacheAssets(#assets: [PHAsset]) -> BFTask {
@@ -49,7 +47,7 @@ public class ImageResizer {
                 imgManager.requestImageForAsset(asset, targetSize: sizeToFit, contentMode: PHImageContentMode.AspectFit, options: imageRequestOptions, resultHandler: {
                     [unowned self](image, _) -> Void in
                     
-                    let imageData = UIImageJPEGRepresentation(image, CGFloat(self.imageQuality))
+                    let imageData = UIImageJPEGRepresentation(image, 0.8)
                     if imageData != nil && FCFileManager.writeFileAtPath(filePath, content: imageData) {
                         completionSource.setResult(filePath)
                     } else {
